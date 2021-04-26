@@ -8,7 +8,6 @@ class WeatherService {
 	}
 
 	async weatherReportRecieved (report) {
-		console.log('HERE');
 		if (report.windSpeed > 20) {
 			Db.sequelize.models.flights.update({
 				status: 'CANCELED',
