@@ -1,4 +1,5 @@
 const Db = require('../infra/sequelize');
+const { Op } = require('sequelize');
 const uuid = require('uuid');
 const EventEmitter = require('../app/EventEmmitter');
 
@@ -14,6 +15,14 @@ class WeatherService {
 			}, {
 				where: {
 					airportId: report.airportId,
+					[Op.or]: [
+						{
+							status: 'NEW',
+						},
+						{
+							status: 'DEPATURE'
+						},
+					],
 				},
 			});
 		}
